@@ -104,10 +104,30 @@ if not already done.
 * Run the fireworks generation and copy to release files:
 ```
 cd ~/github/PlantReactome/fireworks-layout
-java -jar ./prebuilt/fireworks-jar-with-dependencies.jar -u neo4j -k react-app-user_pw -f ./config -o ./output_22 -v
-cd output_22
+mkdir ~/plant_reactome/rXX/fireworks
+java -jar ./prebuilt/fireworks-jar-with-dependencies.jar -u neo4j -k react-app-user_pw -f ./config -o ~/plant_reactome/rXX/fireworks -v
+cd ~/plant_reactome/rXX/fireworks
 tar zcvf ~/plant_reactome/rXX/release_files/fireworks.tgz ./*
 ```
+
+* Errors to watch out for:
+  * ```
+  08:46:12.215 [main] DEBUG org.neo4j.ogm.context.GraphEntityMapper - Unable to find property: schemaClass on class: org.reactome.server.graph.domain.model.Species for writing
+08:46:12.215 [main] DEBUG org.neo4j.ogm.context.register.EntityRegister - Added object to node registry: 2597, Species {dbId=9659284, displayName='Zoysia japonica'}
+Exception in thread "main" java.lang.NullPointerException
+        at org.reactome.server.graph.service.SpeciesService.getSpecies_aroundBody0(SpeciesService.java:25)
+        at org.reactome.server.graph.service.SpeciesService.getSpecies_aroundBody1$advice(SpeciesService.java:33)
+        at org.reactome.server.graph.service.SpeciesService.getSpecies(SpeciesService.java:1)
+        at org.reactome.server.fireworks.Main.main(Main.java:63)
+```
+with the first 2 lines repeated for each species. It does not generate any fireworks files.
+
+  * So far, I've found 3 different causes for this error. They all indicate an issue with a single species, even though it errors for all species.
+    1. An entry in the `PlantReactomeSpecies_full_esc.json` in the OrthoInference step is misspelled in the "name". Example: misspelled "Cucumis melo" as "Cucumuis melo".
+    2. A species in the "schema view" in RCT is missing a "NCBI Taxonomy" DB entry. Example, Zea mays ver5 has a crossReference to "NCBI Taxonomy: 381124". The "NCBI Taxonomy: 381124" was missing in the mysql database. Fix by checking it out from gk_central to an rtpj and check in to local mysql.
+    3. This one was the hardest to diagnose, but if species were manually added rather than checked out from gk_central, it is possible for the crossReference or instanceEdit classes to be connected to the wrong class or DB_ID. Example, Setaria viridis had instanceEdit to taxon "Setaria", when it should have been an instanceEdit entry. If species were added in the normal way, this issue should not occur.
+
+    * For all 3 of these causes, issue needs to be fixed and orthoinference reran. If caused by first 2, might be possible to only run OrthoInference from before the bad species.
 
 ## Diagrams generation
 Another github repo with a prebuilt jar file that should work.

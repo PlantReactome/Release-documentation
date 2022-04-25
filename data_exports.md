@@ -26,6 +26,13 @@ mv slice_XX_stats.* ~/plant_reactome/rXX/stats/
 
 The html file will be used when editing the joomla content in the "Website Mgmt" section.
 
+#### Generate the search index file for Gramene
+This is also done from the Pathway-Exchange project like the stats above. Change the method ran to "dumpRGPsBinnedByPathway" and the output to be gene_ids_by_pathway_and_species.tab
+* Remove the first 4 lines and the last 2 lines as they are extra output not needed.
+
+* Compress and copy the file to release_files
+  `gzip -c gene_ids_by_pathway_and_species.tab > ~/plant_reactome/rXX/release_files/gene_ids_by_pathway_and_species.tab.gz`
+
 ## Downloads page files
 
 #### Create the {UniProt, ChEBI, Ensembl, etc..}2PlantReactome*.txt files
@@ -34,11 +41,12 @@ The html file will be used when editing the joomla content in the "Website Mgmt"
 ```
 cd ~/github/PlantReactome
 git clone https://github.com/PlantReactome/data-export
-cd data-exports
+cd data-export
 ```
 
 2. Run the java program
   * java -jar prebuilt/Data\ Export-jar-with-dependencies.jar -p <neo4j_password> -o ./export_XX -v
+    * This should only take a few minutes, but it does use a lot of RAM, so machine could go in swap and slow down quite a bit.
 
 3. Copy the files to the release_files
   * ```
@@ -80,7 +88,7 @@ Each of these will take quite some time, 30-60 minutes each.
 ```
 cd output/png/Modern
 tar zcvf ~/plant_reactome/rXX/release_files/diagrams.png.tgz ./*.png
-cd ../../png/Modern
+cd ../../svg/Modern
 tar zcvf ~/plant_reactome/rXX/release_files/diagrams.svn.tgz ./*.svg
 ```
 
@@ -129,9 +137,3 @@ To actually run the biopax.zip generation:
 
   * Copy the biopax.zip file to release_files and rename to biopax3.zip:
   `cp biopax_export_22/biopax.zip ~/plant_reactome/r65/release_files/biopax3.zip`
-
-## Generate the search index file for Gramene
-This is also done from the Pathway-Exchange project like the stats above. Change the method ran to "dumpRGPsBinnedByPathway" and the output to be gene_ids_by_pathway_and_species.tab
-
-* Compress and copy the file to release_files
-  `gzip -c gene_ids_by_pathway_and_species.tab > ~/plant_reactome/rXX/release_files/gene_ids_by_pathway_and_species.tab.gz`

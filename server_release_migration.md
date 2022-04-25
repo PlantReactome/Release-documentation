@@ -29,7 +29,7 @@ cd rXX_files
 3. Drop old databases
   ```
   mysql -u root -p
-  drop database gk_current
+  drop database gk_current;
   ```
   If not doing dev, also drop the gk_joomla
   `drop database gk_joomla`
@@ -91,10 +91,11 @@ cd fireworks
 tar zxvf /home/elserj/rXX_files/fireworks.tgz
 cd ../
 cp /home/elserj/rXX_files/biopax3.zip ./
-cp /home/elserj/rXX_files/gene_ids_by_pathway_and_species.tab.gz
+cp /home/elserj/rXX_files/gene_ids_by_pathway_and_species.tab.gz ./
 gunzip gene_ids_by_pathway_and_species.tab.gz
 cp /home/elserj/rXX_files/gk_current_rXX.sql.gz gk_current.sql.gz
 cp /home/elserj/rXX_files/graph.db_rXX.tgz reactome.graphdb.tgz
+cp /home/elserj/rXX_files/diagrams.* ./
 chown -R www-data: ./
 ```
 
