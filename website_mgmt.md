@@ -54,7 +54,7 @@ Edit it by going to "Module Content". Change the Title to the current version.
 
 Change the "Title 1 Text" to have an estimate of the current number of pathways total. Find these by summing in the spreadsheet with the "Projection list". Do the same for Title 2 (Reactions) and Title 3 (Genes).
 
-Title 4 is the number of Small Molecules, and at this point, I don't know how to get that number.
+Title 4 is the number of Small Molecules. Get this by going to [Content Schema](https://plantreactomedev.gramene.org/content/schema/DatabaseObject) and looking at the number for PhysicalEntity->SimpleEntity.
 
 Title 5 is the number of project species, so all species minus Oryza sativa.
 
