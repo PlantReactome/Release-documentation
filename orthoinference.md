@@ -30,9 +30,7 @@ The script to do this is `move_and_rename_orthology_files.py` and is in the gith
 It should be ran with:
 
 
-> python3
-> /path/to/move_and_rename_orthology_files.py -c Plant_Reactome_projection_list-Slice_XX.tsv -e compara -i inparanoid -o rice_to -s
-> XX -r ZZ -v
+`python3 /path/to/move_and_rename_orthology_files.py -c Plant_Reactome_projection_list-Slice_XX.tsv -e compara -i inparanoid -o rice_to -s XX -r ZZ -v`
 
 where XX is the slice number and ZZ is the ensembl release number. The `-e` option designates the location of the compara .rtm files, while `-i` is the inparanoid files from `find_ortho_super_PR_current.pl` from the previous step. `-o` is the output directory files will be moved to.
 
@@ -42,14 +40,14 @@ If the script errors with a missing file, find the file and move it into place. 
 The main script used for this is called `incomparanoid_projections_slice_XX.sh` where XX is the current slice number. To generate, grab the previous slice version of this file and modify by adding any new species to the top. The command in each file are one per species, and are different depending on if the orthology data source is Ensembl compara or InParanoid. Also change for any species that were moved from InParanoid to compara.
 
 The script requires 3 files to already exist in specific directories (relative to the script source directory):
->loc_rgp_lists/LOC_RGPs_slice_XX.txt
->loc_to_rap/RAP-MSU.txt
->loc_to_uniprot/os_loc_2_os_uniprot_slice_XX_no_dupes.txt
+`loc_rgp_lists/LOC_RGPs_slice_XX.txt`
+`loc_to_rap/RAP-MSU.txt`
+`loc_to_uniprot/os_loc_2_os_uniprot_slice_XX_no_dupes.txt`
 
 where XX is the current slice number.  The "LOC_RGPs_slice_XX.txt" and "os_loc_2_os_uniprot_slice_XX_no_dupes.txt" files are to be copied from the LOC_RGPs_slice_XX_expanded_sort_uniq.txt file from the "Generate MSU_RAP-Uniprot mappings" step above. Copy the "RAP-MSU.txt" file from the previous release, this file shouldn't change.
 
 I modified the `incomparanoid_projections_slice_XX.sh` script to accept args for the slice and ensembl release number to make it easier to run, so it should be run with:
->./incomparanoid_projections_slice_XX.sh -s XX -e YY 1> output.txt 2> error.txt
+`./incomparanoid_projections_slice_XX.sh -s XX -e YY 1> output.txt 2> error.txt`
 
 where `XX` is the slice number, and `YY` the ensembl release number (21 and 48 respectively for the release at time of writing).
   * Check the error.txt for any issues. One issue that came up was "KeyError: ....". This indicates that a uniprot ID in the `src/main/resources/RGP_dupes_list.lst` file is no longer actually a duplicate. If this is the case, remove it from the dupes list file and rerun.
