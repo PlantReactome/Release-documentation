@@ -49,7 +49,7 @@ cd data-export
     * This should only take a few minutes, but it does use a lot of RAM, so machine could go in swap and slow down quite a bit.
 
 3. Copy the files to the release_files
-  * ```
+  ```
   cd export_XX
   tar zcvf ~/plant_reactome/rXX/release_files/data_exports_rXX.tar.gz ./*.txt
   ```
