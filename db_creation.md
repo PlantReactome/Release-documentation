@@ -18,7 +18,7 @@ Now that the orthoinference process is all done, we want to copy the last dump f
       * `drop database gk_current;`
       `create database gk_current;`
 2. Fill in with data
-  *   ```
+```
 cd ~/plant_reactome/rZZ/mysqldbs
 zcat test_slice_oryza_sativa_XX_ortho_osat_all_YY.sql.gz | mysql -u user -p gk_current
 ```
@@ -58,7 +58,7 @@ where YY is the last runOrthoinference_YY script (last mysqldump).
 #### Run the script to generate the neo4j db
 1. Don't try to build the script, use the old version
 2. An existing copy of the plant reactome graph.db needs to be in place if this is a fresh neo4j install
-  * ```
+  ```
   sudo systemctl stop neo4j
   cd /var/lib/neo4j/data/databases/
   sudo mv graph.db graph.org
@@ -73,7 +73,7 @@ sudo /usr/lib64/jvm/jre-1.8.0/bin/java -jar ./target/BatchImporter-jar-with-depe
   * Note that react-app-user and react-app-user_pw have to be working username/password for mysql. Password must be given in command, it won't ask and will fail if not included.
   * A bunch of NPEs will occur at the beginning up to about 5% complete, they are normal and can be ignored.
 4. Fix permissions for graph.db and make backup
-  * ```
+  ```
   sudo chown -R neo4j: /var/lib/neo4j/data/databases/graph.db
   mkdir ~/plant_reactome/rXX/release_files
   cd /var/lib/neo4j/data/databases/
@@ -111,8 +111,8 @@ tar zcvf ~/plant_reactome/rXX/release_files/fireworks.tgz ./*
 ```
 
 * Errors to watch out for:
-  * ```
-  08:46:12.215 [main] DEBUG org.neo4j.ogm.context.GraphEntityMapper - Unable to find property: schemaClass on class: org.reactome.server.graph.domain.model.Species for writing
+```
+08:46:12.215 [main] DEBUG org.neo4j.ogm.context.GraphEntityMapper - Unable to find property: schemaClass on class: org.reactome.server.graph.domain.model.Species for writing
 08:46:12.215 [main] DEBUG org.neo4j.ogm.context.register.EntityRegister - Added object to node registry: 2597, Species {dbId=9659284, displayName='Zoysia japonica'}
 Exception in thread "main" java.lang.NullPointerException
         at org.reactome.server.graph.service.SpeciesService.getSpecies_aroundBody0(SpeciesService.java:25)
@@ -168,46 +168,30 @@ Also note that tar directly to create the tarball will not work because there ar
 ## SOLR db Creation
 #### Install solr (if not already installed)
   1. Download the last solr 6 version (newer versions are not tested)
-    * `wget https://archive.apache.org/dist/lucene/solr/6.6.6/solr-6.6.6.tgz`
+     `wget https://archive.apache.org/dist/lucene/solr/6.6.6/solr-6.6.6.tgz`
   2. Install:
-    ```
-    tar zxvf solr-6.6.6.tgz
-    cd solr-6.6.6
-    sudo bin/install_solr_service.sh ../solr-6.6.6.tgz
-    ```
-    * Will get a message about chkconfig, ignore
+     ```
+     tar zxvf solr-6.6.6.tgz
+     cd solr-6.6.6
+     sudo bin/install_solr_service.sh ../solr-6.6.6.tgz
+     ```
+     * Will get a message about chkconfig, ignore
   3. Add username and password for SOLR
     * `sudo vim /opt/solr-6.6.6/server/etc/realm.properties`
     * Add the following text to the file:
       * `solr_admin: <password>,solr-admin`
       where `<password>` is the actual password
 
-  4. Fix java detection and set it to start
-    * If java > 10 is used, the java version detection is broken and some VM options won't be recognized. Fix with the following changes to /opt/solr/bin/solr:
-    ```
-    justin@work:~/Downloads/solr-6.6.6> diff bin/solr /opt/solr/bin/solr
-53c53
-< JAVA_VER_REQ="1.8"
-\---
-> JAVA_VER_REQ="8"
-141,142c141,142
-<   JAVA_VER_NUM=$(echo $JAVA_VER | head -1 | awk -F '"' '/version/ {print $2}')
-<   if [[ "$JAVA_VER_NUM" < "$JAVA_VER_REQ" ]] ; then
-\---
->   JAVA_VER_NUM=$(echo $JAVA_VER | head -1 | awk -F '"' '/version/ {print $2}' | sed -e's/^1\.//' | sed -e's/[._-].*$//')
->   if [[ "$JAVA_VER_NUM" -lt "$JAVA_VER_REQ" ]] ; then
-1817a1818
->       '-XX:+IgnoreUnrecognizedVMOptions' \    
-    ```
-    ```
-    sudo su -
-    cd /var/solr/data
-    tar zxvf /path/to/previous/release_files/plantreacatome_solr_rYY.tgz
-    systemctl daemon-reload
-    systemctl start solr
-    systemctl enable solr
-    ```
-    Check the systemctl status to make sure it started fine. Also go to localhost:8983 and check the "Core Admin" to make sure the plantreactome core is loaded.
+  4. Set it to start
+  ```
+  sudo su -
+  cd /var/solr/data
+  tar zxvf /path/to/previous/release_files/plantreacatome_solr_rYY.tgz
+  systemctl daemon-reload
+  systemctl start solr
+  systemctl enable solr
+  ```
+  Check the systemctl status to make sure it started fine. Also go to localhost:8983 and check the "Core Admin" to make sure the plantreactome core is loaded.
 
 #### Run the SOLR indexing
   1. If not already git cloned
@@ -224,12 +208,12 @@ Also note that tar directly to create the tarball will not work because there ar
   3. Backup SOLR db to release_files
     * Have to be root
    ```
-    sudo su -
-    cd /var/solr/data/
-    tar zcvf /home/justin/plant_reactome/rXX/release_files/plantreactome_solr_rXX.tgz plantreactome
-    exit
-    sudo chown justin: ~/plant_reactome/rXX/release_files/plantreactome_solr_rXX.tgz
-    ```
+   sudo su -
+   cd /var/solr/data/
+   tar zcvf /home/justin/plant_reactome/rXX/release_files/plantreactome_solr_rXX.tgz plantreactome
+   exit
+   sudo chown justin: ~/plant_reactome/rXX/release_files/plantreactome_solr_rXX.tgz
+   ```
 
 #### Generate the analysis_vXX.bin file
 1. If not already git cloned
@@ -242,4 +226,4 @@ git clone https://github.com/PlantReactome/AnalysisTools
 ```
 cd Core/
 java -jar prebuilt/tools-jar-with-dependencies.jar BUILD -d gk_current -h localhost -u react-app-user -p <mysql_password> --interactors-database-path ../../search-indexer/content_service-interactors/interactors.db -o ~/plant_reactome/rXX/release_files/analysis_vYY.bin -v`
-  ```
+```
