@@ -71,3 +71,5 @@ ssh plantreactome1.oicr.on.ca
 cd rXX_files
 mysqldump -u root -p --databases gk_joomla | gzip > gk_joomla_rXX.sql.gz
 ```
+
+Last step is [Server Release/Migration](server_release_migration.md)
