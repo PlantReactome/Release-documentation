@@ -227,3 +227,5 @@ git clone https://github.com/PlantReactome/AnalysisTools
 cd Core/
 java -jar prebuilt/tools-jar-with-dependencies.jar BUILD -d gk_current -h localhost -u react-app-user -p <mysql_password> --interactors-database-path ../../search-indexer/content_service-interactors/interactors.db -o ~/plant_reactome/rXX/release_files/analysis_vYY.bin -v`
 ```
+
+Next up is [Data Exports](data_exports.md)
