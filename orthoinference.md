@@ -119,3 +119,6 @@ So, just need to watch to make sure the output looks good for each.
 Each runOrthoinference_ZZ step will take progressively longer. As the database grows, so does the time to enter the data. The first one should take less than an hour, second more than 2 hours...
 
 This should be everything needed for the OrthoInference step of the Plant Reactome release process.
+
+
+Next up is [Data Conversion](db_creation.md)
