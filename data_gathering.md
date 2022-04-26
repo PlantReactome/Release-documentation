@@ -45,3 +45,5 @@ ssh -i <path_to_AWS_cert_user>.pem <user>@curator.reactome.org "mysqldump --skip
 
 #### Load into mysql (create empty db first):
 `zcat gk_central_<mmddyy>.sql.gz | mysql -u username -p password -h host gk_central_<mmddyy>`
+
+Next up is [Slicing](slicing.md)
