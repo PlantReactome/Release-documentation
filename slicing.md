@@ -156,3 +156,6 @@ This section takes the most amount of "mindless" work time to do. There is no au
     cd ~/plant_reactome/rYY/mysqldbs
   mysqldump -u justin -p test_slice_oryza_sativa_XX | gzip > test_slice_oryza_sativa_XX_after_species.sql.gz
   ```
+
+
+Next up is [Ortho-Inference](orthoinference.md)
