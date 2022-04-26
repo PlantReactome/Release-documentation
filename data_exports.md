@@ -137,3 +137,6 @@ To actually run the biopax.zip generation:
 
   * Copy the biopax.zip file to release_files and rename to biopax3.zip:
   `cp biopax_export_22/biopax.zip ~/plant_reactome/r65/release_files/biopax3.zip`
+
+
+Next up is [Website Management](website_mgmt.md)
