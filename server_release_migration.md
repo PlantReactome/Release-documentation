@@ -43,7 +43,7 @@ if not on dev:
 5. Load new data to mysql
 `zcat gk_current_rXX.sql.gz | mysql -u root -p gk_current`
 if not on dev:
-`zcat gk_joomla_rXX.sql.gz | mysql -u roo t-p gk_joomla`
+`zcat gk_joomla_rXX.sql.gz | mysql -u root -p gk_joomla`
 
 6. Copy new graph.db for neo4j
 ```
