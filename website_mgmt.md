@@ -56,9 +56,9 @@ Change the "Title 1 Text" to have an estimate of the current number of pathways 
 
 Title 4 is the number of Small Molecules. Get this by going to [Content Schema](https://plantreactomedev.gramene.org/content/schema/DatabaseObject) and looking at the number for PhysicalEntity->SimpleEntity.
 
-Title 5 is the number of project species, so all species minus Oryza sativa.
+Title 5 is the number of projected species, so all species minus Oryza sativa.
 
-Title 6 is Literature References. I think this is from RCT -> Publication -> LiteratureReference.
+Title 6 is Literature References. This is from the Content Schema like the Small Molecules, but "Publication"
 
 ## Have the curators and Pankaj check it out
 Make any required changes.
