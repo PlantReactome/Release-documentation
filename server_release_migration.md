@@ -123,6 +123,6 @@ Inform Andrew at gramene of the new release. He needs the files:
 
 Make sure he gets the updated version of files, not the previous ones.
 
-Inform Alfonso and Suhaib at EBI of the new release. They need the files:
+Inform Alfonso and Pablo at EBI of the new release. They need the files:
   * http://plantreactome.gramene.org/download/current/UniProt2PlantReactome_All_Levels.txt
   * http://plantreactome.gramene.org/download/current/Ensembl2PlantReactome_All_Levels.txt
