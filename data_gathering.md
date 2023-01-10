@@ -39,7 +39,7 @@ Contact the curators (Sushma and Parul) and make sure they aren't curating any m
 ```
 mkdir ~/plant_reactome/r##/mysqldbs
 cd ~/plant_reactome/r##/mysqldbs
-ssh -i <path_to_AWS_cert_user>.pem <user>@curator.reactome.org "mysqldump --skip-lock-tables -u authortool -p gk_central | gzip -9" > ./gk_central_<mmddyy>.sql.gz
+ssh -i <path_to_AWS_cert_user>.pem <user>@curator.reactome.org "mysqldump --no-tablespaces --skip-lock-tables -u authortool -p gk_central | gzip -9" > ./gk_central_<mmddyy>.sql.gz
 ```
 
 
