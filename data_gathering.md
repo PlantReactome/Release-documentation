@@ -27,7 +27,7 @@ Sharon Wei has to receive the latest Compara orthology database dump from Ensemb
 ```
 mkdir -p ~/plant_reactome/r##/orthology_files/compara/
 cd ~/plant_reactome/r##/orthology_files/compara/
-wget -np -nH --cut-dirs 3 -r http://ftp.gramene.org/collaborators/reactome/G##_reactom_ort_dump/
+wget -np -nH --cut-dirs 3 -r -A .rtm http://ftp.gramene.org/collaborators/reactome/G##_reactom_ort_dump/
 ```
 (where ## is the Gramene release number)
 
