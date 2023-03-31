@@ -5,10 +5,10 @@ This section takes the most amount of "mindless" work time to do. There is no au
 ## Prep pathway data (via RCT)
 
 1. Download and install latest version of RCT from https://reactome.org/download-data/reactome-curator-tool
- * The site says it will work with java 1.8.* versions. It does not seem to work on openjdk 11 or higher at this time.
- * On my machine, I downloaded the old java version with `sudo zypper in java-1_8_0-openjdk`
+ * The site says it will work with java 1.11.* versions. It does not seem to work on higher than openjdk 11 at this time.
+ * On my machine, I downloaded the old java version with `sudo zypper in java-11-openjdk`
  * I then modified the `./ReactomeCuratorTool.sh` script to explicitly call the old java version
-     *  `/usr/lib64/jvm/jre-1.8.0/bin/java` instead of `java`
+     *  `/usr/lib64/jvm/java-11-openjdk-11/bin/java` instead of `java`
 
 
 2. Connect RCT to the gk_central instance set up at the end of the "Data gathering" section.
