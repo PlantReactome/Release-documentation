@@ -23,6 +23,7 @@ This section takes the most amount of "mindless" work time to do. There is no au
   ![](assets/slicing-cfdafd07.png)
   * Once it is done "pulling all instances from the database", you will see all the pathways on the rtpj side.
   * Save the file again to have as a base.
+  * Change the "Show in" at the top of the tree view to "Oryza sativa".
   * Save it as a new file "inital_rice_from_gk_central_checked_rice" for the next step.
 
 5. On the rtpj side, from "Rice pathways" down (child of), make sure **every** single checkbox is checked. The check means "_doRelease" is marked as true.
