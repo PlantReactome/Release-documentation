@@ -10,6 +10,13 @@ Code is downloaded from github with `git clone https://github.com/PlantReactome/
 
 The CuratorUtlities.listRiceRGPSs needs to be ran twice, once with the arguments `(true, true)` and again with `(true, false)`. Before running, the db needs to be changed in "CuratorUtilities.xml" to the test_slice_oryza_sativa_XX db saved in the Slicing step. To save directly to a file, in the `Run/Debug Configurations` IntelliJ options (scroll down in the front window in the above image), choose the file to save to with the option `Save console output to file:`.The 2 files should be named differently, but the names don't really matter.
 
+* Error I had with running this for Release 66/Slice 23 was that the mysql initial character set was causing it to fail with a message like:
+ * `java.sql.SQLException: Unknown initial character set index '246' received from server`
+ * Fixed it by adding the following to /etc/my.cnf:
+  * `character_set_server=latin1
+collation_server=latin1_swedish_ci`
+  * Also used a mysql command to alter the database to latin1, but I'm not sure that was actually needed.
+
 ## Generate MSU_RAP-Uniprot mappings; Edit orthopair dupes
 This step now has a script. The script is at `Pathway-Exchange/bin/combine_curated_riceRGPs.sh` and has an associated resource file that contains all the old Uniprot IDs to remove. Script is called with
 `bin/combine_curated_riceRGPs.sh file_1 file_2 slice_XX`
