@@ -137,7 +137,7 @@ This section takes the most amount of "mindless" work time to do. There is no au
 
 5. Switch to the "DatabaseIdentifier" class and find the "NCBI Taxonomy" instances you wrote down for the genus, as well as the ones for each species and check them out to the rtpj.
   * Some may be under "NCBI_taxonomy" so look there if you can't find them.
-  * Not sure this step is needed as it doesn't appear to actually check anything out, but it is part of the original instructions and doesn't take long.
+  * New ones will probably only be "shell instances", **so make sure you select each one and "Download"**. Failure to do so will cause the fireworks generation to fail.
 
 6. Save the file with the new slice number "test_slice_oryza_sativa_XX_full_taxa".
 
