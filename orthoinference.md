@@ -114,7 +114,10 @@ Caused by: java.lang.UnsupportedOperationException: No class provided, and an ap
 
 Call the script with `runOrthoinference_master_slice_XX.sh`.
 
-Previously, it was suggested to add new species to the first runOrthoinference_1.sh script, but I think a better way in the future is to do a quick test run with any new species, make sure it works, then add the new species to the end of the runOrthoinference_XX.sh scripts and start over with a clean db.  This way if there are later problems with the new species when doing the "Data Conversion" steps, we don't have to rerun the entire orthoinference process, just the last step.
+Previously, it was suggested to add new species to the first runOrthoinference_1.sh script, but I think a better way in the future is to do a quick test run with any new species, make sure it works, then add the new species to the end of the runOrthoinference_XX.sh scripts and start over with a clean db.
+
+Go all the way through the "Data Conversion" steps to make sure the new species are all good.
+
 **Note:** If species are switched from InParanoid to compara, test them, but make sure they aren't in the runOrthoinference_XX scripts twice. A quick command to test if there are duplicates `egrep "^projSpecies" runOrthoinference_* | awk -F '=' '{print $2}' | sed 's/(//' | sed 's/)//' | tr " " "\n" | sort | uniq -d`
 
 To add new species, simply add the 4 char species identifier to the runOrthoinference_XX.sh file in the "projSpecies=" line. After each runOrthoinference file is ran, it will take a mysqldump of the database so that we have periodic backups to go to in case something goes wrong.
