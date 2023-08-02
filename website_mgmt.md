@@ -64,7 +64,7 @@ Title 6 is Literature References. This is from the Content Schema like the Small
 
 Under Extension->Modules, find the module labeled "Why Plant Reactome" (about halfway on the 2nd page).
 
-Chnage the text at the top to have the release version and date.
+Change the text at the top to have the release version and date.
 
 ## Have the curators and Pankaj check it out
 Make any required changes.
