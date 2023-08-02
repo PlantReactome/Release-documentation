@@ -60,6 +60,12 @@ Title 5 is the number of projected species, so all species minus Oryza sativa.
 
 Title 6 is Literature References. This is from the Content Schema like the Small Molecules, but "Publication"
 
+## Change the release info in the "Why Plant Reactome" section on the front page
+
+Under Extension->Modules, find the module labeled "Why Plant Reactome" (about halfway on the 2nd page).
+
+Chnage the text at the top to have the release version and date.
+
 ## Have the curators and Pankaj check it out
 Make any required changes.
 
