@@ -103,10 +103,12 @@ This section takes the most amount of "mindless" work time to do. There is no au
 
 3. Run the slicing tool with the command
   `java -Xmx8G -Djava.awt.headless=true -jar ProjectSlicingTool.jar`
-  * It will ask 2 questions, the first is about StableIdentifiers as true, choose true.
+    * Note that I had issues with the newer versions of mariadb with the old version of this jar file. I had to recompile it with a patch and when I did I made it only work with java 15 or later. Might have to specify the java version if /usr/bin/java is still using 11.  
+  * It will ask 3 questions, the first is about StableIdentifiers as true, choose true.
   * Second question is what author DB_ID to use. Find the ID in the Person table in the "Schema View"
     ![](assets/slicing-3afd3144.png)
     DB_ID in screenshot above is 9765529.
+  * Third question is "reviewStatus for released Events", choose true
   * Slicing tool will take about 10 minutes to complete.
 
 4. Verify only Rice Pathways in slice.
