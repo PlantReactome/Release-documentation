@@ -165,6 +165,21 @@ Not sure what that is, but may explain why a couple diagrams appear to be missin
 
 Also note that tar directly to create the tarball will not work because there are too many files and get an error "Argument list too long", so have to use `find` to pipe it to the tar command instead.
 
+On release 69 (slice 24) I had a new issue pop up I had not seen before. The diagram generation failed with the following:
+```
+2025-02-13 15:37:05 ERROR DiagramGraphFactory:214 - -179 >> null is not in the database
+java.lang.NullPointerException
+        at org.reactome.server.diagram.converter.graph.DiagramGraphFactory.getOrCreate(DiagramGraphFactory.java:207)
+        at org.reactome.server.diagram.converter.graph.DiagramGraphFactory.getEventNodes(DiagramGraphFactory.java:195)
+        at org.reactome.server.diagram.converter.graph.DiagramGraphFactory.getGraphEdges(DiagramGraphFactory.java:129)
+        at org.reactome.server.diagram.converter.graph.DiagramGraphFactory.getGraph(DiagramGraphFactory.java:42)
+        at org.reactome.server.diagram.converter.tools.Convertor2JsonTool.convert(Convertor2JsonTool.java:192)
+        at org.reactome.server.diagram.converter.tools.Convertor2JsonTool.main(Convertor2JsonTool.java:131)
+        at org.reactome.server.diagram.converter.Main.main(Main.java:57)
+```
+
+The negative DBID ended up being caused by a reaction/event being deleted in an rtpj and not properly synced to gk_central. I'm not sure how she found it exactly, but Lisa Matthews was able to figure out which thing it was, while I was not. I had created a custom jar file to skip the problem, but it did need to be solved instead. This is a curator issue.
+
 ## SOLR db Creation
 #### Install solr (if not already installed)
   1. Download the last solr 6 version (newer versions are not tested)
