@@ -230,7 +230,7 @@ The negative DBID ended up being caused by a reaction/event being deleted in an 
    sudo chown justin: ~/plant_reactome/rXX/release_files/plantreactome_solr_rXX.tgz
    ```
 
-#### Generate the analysis_vXX.bin file
+## Generate the analysis_vXX.bin file
 1. If not already git cloned
 ```
 cd ~/github/PlantReactome
