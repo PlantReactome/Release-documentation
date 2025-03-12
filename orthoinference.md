@@ -61,6 +61,13 @@ where `XX` is the slice number, and `YY` the ensembl release number (21 and 48 r
 
 The script will generate 3 files for each species, in a `rice_to/slice_XX/ZZZZ` folder, where `ZZZZ` is the 2-4 char species identifier. These 3 files will be used for the actual orthoinference step.
 
+#### Error with InParanoid in slice 24
+For this run, I had new InParanoid data for just Salvia hispanica. When generating the fireworks diagrams later, it was obvious a bunch was missing from the difference in file size. Still don't understand the actual issue, but it went away if I filterd the `rice_to/slice/XX/Sh/osat_shis_mapping.txt` to remove all lines that start with "^LOC". I did this with:
+```
+mv osat_shis_mapping.txt osat_shis_mappping.txt.org
+grep -v "^LOC" osat_shis_mapping.txt.org > osat_shis_mapping.txt
+```
+
 ## Projection config file updates
 File to be changed is `PlantReactomeSpecies_full_esc.json`. This is a config file in the `src/main/resources` folder for orthoinference. This was generated using a script, but future changes will probably be made manually. If any new species are to be added, they need to be added to this file. Just copy/paste a similar entry and make your changes.
 #### Important: The species 'name' for each species needs to match ***exactly*** how it was added in gk_current.
