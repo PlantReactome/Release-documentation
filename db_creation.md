@@ -72,6 +72,16 @@ sudo /usr/lib64/jvm/jre-1.8.0/bin/java -jar ./target/BatchImporter-jar-with-depe
   * Needs to be java 1.8, will error with missing classes if using higher version.
   * Note that react-app-user and react-app-user_pw have to be working username/password for mysql. Password must be given in command, it won't ask and will fail if not included.
   * A bunch of NPEs will occur at the beginning up to about 5% complete, they are normal and can be ignored.
+  * On release 24, I had the following error:
+```
+Exception in thread "main" java.lang.RuntimeException: IndexEntryConflictException{propertyValues=( String("1462606") ), addedNodeId=3511, existingNodeId=3328}
+        at org.neo4j.unsafe.batchinsert.internal.BatchInserterImpl.shutdown(BatchInserterImpl.java:1011)
+        at org.neo4j.unsafe.batchinsert.internal.FileSystemClosingBatchInserter.shutdown(FileSystemClosingBatchInserter.java:184)
+        at org.reactome.server.graph.batchimport.ReactomeBatchImporter.importAll(ReactomeBatchImporter.java:108)
+        at org.reactome.server.graph.Main.main(Main.java:45)
+Caused by: IndexEntryConflictException{propertyValues=( String("1462606") ), addedNodeId=3511, existingNodeId=3328}
+```
+   * This ended up being caused by an incorrect taxonomy for Glycine. Glycine max had "superTaxon" Soja, while Glycine soja had Glycine subgen. Soja. This was done incorrectly by Peter back in 2017, but didn't cause an issue until Glycine soja was added. The actual error is that NCBI:Taxonomy 1462606 is in gk_central as both Soja and Glycine subgen. Soja. Peter fixed in gk_central and I had to go back to the adding species step and pull the correct entries and then rerun orthoinference.
 4. Fix permissions for graph.db and make backup
   ```
   sudo chown -R neo4j: /var/lib/neo4j/data/databases/graph.db
