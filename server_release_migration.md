@@ -113,7 +113,7 @@ If on dev, do the "Website Mgmt" section. If on live, may have to schedule the d
 Contact Ryan at OICR to have plantReactome{1,2}.oicr.on.ca swapped with plantreactome{dev}.oicr.on.ca
 Once it is done, update the /etc/motd on each to indicate which is dev and LIVE.
 
-## Inform Gramene and EBI/ATLAS of new release
+## Inform Gramene of new release
 
 Inform Andrew at gramene of the new release. He needs the files:
   * gene_ids_by_pathway_and_species.tab
@@ -123,6 +123,4 @@ Inform Andrew at gramene of the new release. He needs the files:
 
 Make sure he gets the updated version of files, not the previous ones.
 
-Inform Alfonso and Pablo at EBI of the new release. They need the files:
-  * http://plantreactome.gramene.org/download/current/UniProt2PlantReactome_All_Levels.txt
-  * http://plantreactome.gramene.org/download/current/Ensembl2PlantReactome_All_Levels.txt
+EBI/ATLAS no longer needs to be sent the files. They download directly as part of their release process.
